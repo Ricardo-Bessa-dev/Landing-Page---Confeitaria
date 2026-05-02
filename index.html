@@ -1,0 +1,1229 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Encomendas de Bolos</title>
+  <meta
+    name="description"
+    content="Monte sua encomenda de bolo artesanal e envie o pedido pelo WhatsApp."
+  />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            cream: "#fff7f1",
+            blush: "#ffe1eb",
+            petal: "#ffd1df",
+            lilac: "#e9d5ff",
+            lavender: "#f4e8ff",
+            cocoa: "#4b3621",
+            mocha: "#6f4e37",
+            caramel: "#a47148",
+            berry: "#9f4167"
+          },
+          boxShadow: {
+            soft: "0 18px 40px rgba(75, 54, 33, 0.12)"
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    .btn-animado {
+      position: relative;
+      display: inline-block;
+      padding: 15px 30px;
+      background-color: transparent; /* Fundo invisível para mostrar a cor pastel da página */
+      color: #5D4037; /* Marrom escuro */
+      text-transform: uppercase;
+      font-weight: bold;
+      text-decoration: none;
+      letter-spacing: 2px;
+      overflow: hidden;
+      transition: 0.5s;
+      border: none;
+      cursor: pointer;
+    }
+    
+    /* Efeito Hover Elegante (sem neon) */
+    .btn-animado:hover {
+      background: #ffd1df;
+      color: #5D4037; /* Marrom escuro */
+      box-shadow: 0 0 10px rgba(255, 182, 193, 0.65); /* Sombra rosa suave */
+    }
+    
+    .btn-animado span {
+      position: absolute;
+      display: block;
+    }
+    
+    /* Linha Topo */
+    .btn-animado span:nth-child(1) {
+      top: 0; left: 0; width: 100%; height: 4px;
+      background: linear-gradient(90deg, transparent, #ffb6c1);
+      animation: animate1 2s linear infinite;
+    }
+    @keyframes animate1 {
+      0% { left: -100%; }
+      50%, 100% { left: 100%; }
+    }
+    
+    /* Linha Direita */
+    .btn-animado span:nth-child(2) {
+      top: -100%; right: 0; width: 4px; height: 100%;
+      background: linear-gradient(180deg, transparent, #ffb6c1);
+      animation: animate2 2s linear infinite;
+      animation-delay: 0.25s;
+    }
+    @keyframes animate2 {
+      0% { top: -100%; }
+      50%, 100% { top: 100%; }
+    }
+    
+    /* Linha Base */
+    .btn-animado span:nth-child(3) {
+      bottom: 0; right: 0; width: 100%; height: 4px;
+      background: linear-gradient(270deg, transparent, #ffb6c1);
+      animation: animate3 2s linear infinite;
+      animation-delay: 0.5s;
+    }
+    @keyframes animate3 {
+      0% { right: -100%; }
+      50%, 100% { right: 100%; }
+    }
+    
+    /* Linha Esquerda */
+    .btn-animado span:nth-child(4) {
+      bottom: -100%; left: 0; width: 4px; height: 100%;
+      background: linear-gradient(360deg, transparent, #ffb6c1);
+      animation: animate4 2s linear infinite;
+      animation-delay: 0.75s;
+    }
+    @keyframes animate4 {
+      0% { bottom: -100%; }
+      50%, 100% { bottom: 100%; }
+    }
+  </style>
+</head>
+
+<body class="bg-cream text-cocoa antialiased">
+  <div class="min-h-screen">
+    <header class="bg-blush px-5 py-7">
+      <div class="mx-auto flex max-w-3xl flex-col items-center text-center">
+        <!-- Substitua esta imagem pela logo real da doceria. -->
+        <img
+          src="Imagens/Logo-MJ.webp"
+          alt="Logo da doceria"
+          class="h-20 w-20 rounded-full border-4 border-cream object-cover shadow-soft"
+        />
+        <p class="mt-4 text-xs font-semibold uppercase tracking-[0.18em] text-berry">
+          Bolos artesanais sob encomenda
+        </p>
+        <h1 class="mt-2 text-2xl font-bold leading-tight text-cocoa sm:text-3xl">
+          Doces momentos começam com um bolo feito para você
+        </h1>
+        <p class="mt-3 max-w-xl text-sm leading-6 text-mocha sm:text-base">
+          Escolha massa, recheio, tamanho e detalhes da decoração. Depois é só enviar o pedido pelo WhatsApp.
+        </p>
+      </div>
+    </header>
+
+    <main class="mx-auto max-w-3xl px-5 py-8">
+      <section aria-labelledby="catalogo-titulo">
+        <div class="mb-5">
+          <p class="text-sm font-semibold uppercase tracking-[0.18em] text-berry">
+            Vitrine
+          </p>
+          <h2 id="catalogo-titulo" class="mt-2 text-2xl font-bold text-cocoa">
+            Bolos que já passaram por aqui
+          </h2>
+        </div>
+
+        <div id="cakeCarousel" class="relative">
+          <div id="cakeCarouselViewport" class="overflow-hidden py-2 touch-pan-y">
+            <div id="cakeCarouselTrack" class="flex gap-4 transition-transform duration-500 ease-in-out">
+              <article class="carousel-slide flex-[0_0_86%] transition duration-500 ease-in-out sm:flex-[0_0_72%]">
+                <div class="overflow-hidden rounded-lg border border-petal bg-lavender shadow-soft">
+                  <!-- Substitua esta imagem pela foto real do bolo. -->
+                  <img
+                    src="Imagens/Vitrine-2.webp"
+                    alt="Bolo de morango com chantilly"
+                    class="h-56 w-full object-cover"
+                  />
+                  <div class="p-5">
+                    <h3 class="text-xl font-bold text-cocoa">Bolo Jardim de Morango</h3>
+                    <p class="mt-2 text-base font-semibold text-mocha">Tamanho pequeno</p>
+                  </div>
+                </div>
+              </article>
+
+              <article class="carousel-slide flex-[0_0_86%] transition duration-500 ease-in-out sm:flex-[0_0_72%]">
+                <div class="overflow-hidden rounded-lg border border-petal bg-blush shadow-soft">
+                  <!-- Substitua esta imagem pela foto real do bolo. -->
+                  <img
+                    src="Imagens/Vitrine-3.webp"
+                    alt="Bolo de chocolate decorado"
+                    class="h-56 w-full object-cover"
+                  />
+                  <div class="p-5">
+                    <h3 class="text-xl font-bold text-cocoa">Bolo Chantilly com Cerejas</h3>
+                    <p class="mt-2 text-base font-semibold text-mocha">Tamanho médio</p>
+                  </div>
+                </div>
+              </article>
+
+              <article class="carousel-slide flex-[0_0_86%] transition duration-500 ease-in-out sm:flex-[0_0_72%]">
+                <div class="overflow-hidden rounded-lg border border-petal bg-blush shadow-soft">
+                  <!-- Substitua esta imagem pela foto real do bolo. -->
+                  <img
+                    src="Imagens/Vitrine-1.webp"
+                    alt="Bolo infantil colorido"
+                    class="h-56 w-full object-cover"
+                  />
+                  <div class="p-5">
+                    <h3 class="text-xl font-bold text-cocoa">Bolo Chocolatudo</h3>
+                    <p class="mt-2 text-base font-semibold text-mocha">Tamanho grande</p>
+                  </div>
+                </div>
+              </article>
+
+              <article class="carousel-slide flex-[0_0_86%] transition duration-500 ease-in-out sm:flex-[0_0_72%]">
+                <div class="overflow-hidden rounded-lg border border-petal bg-lavender shadow-soft">
+                  <!-- Substitua esta imagem pela foto real do bolo. -->
+                  <img
+                    src="Imagens/Vitrine-4.webp"
+                    alt="Bolo minimalista em tons pastéis"
+                    class="h-56 w-full object-cover"
+                  />
+                  <div class="p-5">
+                    <h3 class="text-xl font-bold text-cocoa">Bolo 2º andar</h3>
+                    <p class="mt-2 text-base font-semibold text-mocha">Tamanho médio/menor</p>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+
+          <div id="cakeCarouselDots" class="mt-4 flex justify-center gap-2" aria-label="Indicadores do catálogo"></div>
+        </div>
+      </section>
+
+      <button
+        id="btn-guia-tamanhos"
+        type="button"
+        class="btn-animado mt-8 w-full rounded-lg text-center shadow-[0_0_28px_rgba(75,54,33,0.24)] focus:outline-none focus:ring-4 focus:ring-lilac"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        Ver Guia de Tamanhos
+      </button>
+
+      <section id="pedido" aria-labelledby="pedido-titulo" class="mt-10 rounded-lg bg-blush p-5 shadow-soft sm:p-7">
+        <div class="mb-6">
+          <p class="text-sm font-semibold uppercase tracking-[0.18em] text-berry">
+            Encomenda
+          </p>
+          <h2 id="pedido-titulo" class="mt-2 text-2xl font-bold text-cocoa">
+            Monte seu pedido
+          </h2>
+        </div>
+
+        <form id="orderForm" class="space-y-5" novalidate>
+          <div data-field="customerName">
+            <label for="customerName" class="block text-sm font-bold text-cocoa">
+              Nome do cliente
+            </label>
+            <input
+              id="customerName"
+              name="customerName"
+              type="text"
+              autocomplete="name"
+              required
+              class="mt-2 min-h-12 w-full rounded-lg border-2 border-petal bg-cream px-4 py-3 text-base text-cocoa outline-none transition focus:border-berry focus:ring-4 focus:ring-lilac"
+              placeholder="Seu nome completo"
+            />
+            <p class="mt-2 hidden text-sm font-semibold text-red-700" data-error></p>
+          </div>
+
+          <fieldset data-field="cakeBase" class="rounded-lg border-2 border-transparent">
+            <legend class="text-sm font-bold text-cocoa">Tipo de massa</legend>
+            <div class="mt-2 grid gap-3 sm:grid-cols-2">
+              <label class="cursor-pointer">
+                <input type="radio" name="cakeBase" value="Branca (comum)" class="peer sr-only" />
+                <span class="flex min-h-16 items-center gap-3 rounded-lg border-2 border-petal bg-cream px-4 py-3 text-base font-semibold text-cocoa transition peer-checked:border-berry peer-checked:bg-lilac peer-focus:ring-4 peer-focus:ring-lilac">
+                  <span aria-hidden="true">🍰</span>
+                  Branca (comum)
+                </span>
+              </label>
+              <label class="cursor-pointer">
+                <input type="radio" name="cakeBase" value="Chocolate" class="peer sr-only" data-price-increase="0.05" />
+                <span class="flex min-h-16 items-center gap-3 rounded-lg border-2 border-petal bg-cream px-4 py-3 text-base font-semibold text-cocoa transition peer-checked:border-berry peer-checked:bg-lilac peer-focus:ring-4 peer-focus:ring-lilac">
+                  <span aria-hidden="true">🍫</span>
+                  Chocolate (+5% no preço)
+                </span>
+              </label>
+            </div>
+            <p class="mt-2 hidden text-sm font-semibold text-red-700" data-error></p>
+          </fieldset>
+
+          <fieldset data-field="filling" class="rounded-lg border-2 border-transparent">
+            <legend class="text-sm font-bold text-cocoa">Tipo de recheio</legend>
+            <div class="mt-2 grid gap-3 sm:grid-cols-2">
+              <label class="cursor-pointer">
+                <input type="radio" name="filling" value="Chocolate" class="peer sr-only" data-price-increase="0.05" />
+                <span class="flex min-h-16 items-center gap-3 rounded-lg border-2 border-petal bg-cream px-4 py-3 text-base font-semibold text-cocoa transition peer-checked:border-berry peer-checked:bg-lilac peer-focus:ring-4 peer-focus:ring-lilac">
+                  <span aria-hidden="true">🍫</span>
+                  Chocolate (+5% no preço)
+                </span>
+              </label>
+              <label class="cursor-pointer">
+                <input type="radio" name="filling" value="Leite ninho" class="peer sr-only" />
+                <span class="flex min-h-16 items-center gap-3 rounded-lg border-2 border-petal bg-cream px-4 py-3 text-base font-semibold text-cocoa transition peer-checked:border-berry peer-checked:bg-lilac peer-focus:ring-4 peer-focus:ring-lilac">
+                  <span aria-hidden="true">🥛</span>
+                  Leite ninho
+                </span>
+              </label>
+              <label class="cursor-pointer">
+                <input type="radio" name="filling" value="Maracujá" class="peer sr-only" />
+                <span class="flex min-h-16 items-center gap-3 rounded-lg border-2 border-petal bg-cream px-4 py-3 text-base font-semibold text-cocoa transition peer-checked:border-berry peer-checked:bg-lilac peer-focus:ring-4 peer-focus:ring-lilac">
+                  <span aria-hidden="true">🟡</span>
+                  Maracujá
+                </span>
+              </label>
+              <label class="cursor-pointer">
+                <input type="radio" name="filling" value="Coco" class="peer sr-only" />
+                <span class="flex min-h-16 items-center gap-3 rounded-lg border-2 border-petal bg-cream px-4 py-3 text-base font-semibold text-cocoa transition peer-checked:border-berry peer-checked:bg-lilac peer-focus:ring-4 peer-focus:ring-lilac">
+                  <span aria-hidden="true">🥥</span>
+                  Coco
+                </span>
+              </label>
+              <label class="cursor-pointer sm:col-span-2">
+                <input type="radio" name="filling" value="Abacaxi" class="peer sr-only" />
+                <span class="flex min-h-16 items-center gap-3 rounded-lg border-2 border-petal bg-cream px-4 py-3 text-base font-semibold text-cocoa transition peer-checked:border-berry peer-checked:bg-lilac peer-focus:ring-4 peer-focus:ring-lilac">
+                  <span aria-hidden="true">🍍</span>
+                  Abacaxi
+                </span>
+              </label>
+            </div>
+            <p class="mt-2 hidden text-sm font-semibold text-red-700" data-error></p>
+          </fieldset>
+
+          <fieldset data-field="frosting" class="rounded-lg border-2 border-transparent">
+            <legend class="text-sm font-bold text-cocoa">Tipo de cobertura</legend>
+            <div class="mt-2 grid gap-3 sm:grid-cols-3">
+              <label class="cursor-pointer">
+                <input type="radio" name="frosting" value="Chantilly" class="peer sr-only" />
+                <span class="flex min-h-16 items-center gap-3 rounded-lg border-2 border-petal bg-cream px-4 py-3 text-base font-semibold text-cocoa transition peer-checked:border-berry peer-checked:bg-lilac peer-focus:ring-4 peer-focus:ring-lilac">
+                  <span aria-hidden="true">☁️</span>
+                  Chantilly
+                </span>
+              </label>
+              <label class="cursor-pointer">
+                <input type="radio" name="frosting" value="Chocolate" class="peer sr-only" data-price-increase="0.05" />
+                <span class="flex min-h-16 items-center gap-3 rounded-lg border-2 border-petal bg-cream px-4 py-3 text-base font-semibold text-cocoa transition peer-checked:border-berry peer-checked:bg-lilac peer-focus:ring-4 peer-focus:ring-lilac">
+                  <span aria-hidden="true">🍫</span>
+                  Chocolate (+5% no preço)
+                </span>
+              </label>
+              <label class="cursor-pointer">
+                <input type="radio" name="frosting" value="Maracujá" class="peer sr-only" />
+                <span class="flex min-h-16 items-center gap-3 rounded-lg border-2 border-petal bg-cream px-4 py-3 text-base font-semibold text-cocoa transition peer-checked:border-berry peer-checked:bg-lilac peer-focus:ring-4 peer-focus:ring-lilac">
+                  <span aria-hidden="true">🟡</span>
+                  Maracujá
+                </span>
+              </label>
+            </div>
+            <p class="mt-2 hidden text-sm font-semibold text-red-700" data-error></p>
+          </fieldset>
+
+          <fieldset data-field="cakeSize" class="rounded-lg border-2 border-transparent">
+            <legend class="text-sm font-bold text-cocoa">Tamanho/Peso</legend>
+            <div class="mt-2 grid gap-3 sm:grid-cols-2">
+              <label class="cursor-pointer">
+                <input type="radio" name="cakeSize" value="Menor: R$ 90" class="peer sr-only" data-base-price="90" />
+                <span class="flex min-h-16 items-center gap-3 rounded-lg border-2 border-petal bg-cream px-4 py-3 text-base font-semibold text-cocoa transition peer-checked:border-berry peer-checked:bg-lilac peer-focus:ring-4 peer-focus:ring-lilac">
+                  
+                  Menor: R$ 90
+                </span>
+              </label>
+              <label class="cursor-pointer">
+                <input type="radio" name="cakeSize" value="Pequeno: R$ 120" class="peer sr-only" data-base-price="120" />
+                <span class="flex min-h-16 items-center gap-3 rounded-lg border-2 border-petal bg-cream px-4 py-3 text-base font-semibold text-cocoa transition peer-checked:border-berry peer-checked:bg-lilac peer-focus:ring-4 peer-focus:ring-lilac">
+
+                  Pequeno: R$ 120
+                </span>
+              </label>
+              <label class="cursor-pointer">
+                <input type="radio" name="cakeSize" value="Médio: R$ 130" class="peer sr-only" data-base-price="130" />
+                <span class="flex min-h-16 items-center gap-3 rounded-lg border-2 border-petal bg-cream px-4 py-3 text-base font-semibold text-cocoa transition peer-checked:border-berry peer-checked:bg-lilac peer-focus:ring-4 peer-focus:ring-lilac">
+
+                  Médio: R$ 130
+                </span>
+              </label>
+              <label class="cursor-pointer">
+                <input type="radio" name="cakeSize" value="Grande (1 kg): R$ 160" class="peer sr-only" data-base-price="160" />
+                <span class="flex min-h-16 items-center gap-3 rounded-lg border-2 border-petal bg-cream px-4 py-3 text-base font-semibold text-cocoa transition peer-checked:border-berry peer-checked:bg-lilac peer-focus:ring-4 peer-focus:ring-lilac">
+
+                  Grande (1 kg): R$ 160
+                </span>
+              </label>
+              <label class="cursor-pointer">
+                <input type="radio" name="cakeSize" value="1 kg e meio: R$ 240" class="peer sr-only" data-base-price="240" />
+                <span class="flex min-h-16 items-center gap-3 rounded-lg border-2 border-petal bg-cream px-4 py-3 text-base font-semibold text-cocoa transition peer-checked:border-berry peer-checked:bg-lilac peer-focus:ring-4 peer-focus:ring-lilac">
+
+                  1 kg e meio: R$ 240
+                </span>
+              </label>
+              <label class="cursor-pointer">
+                <input type="radio" name="cakeSize" value="2 kg: R$ 320" class="peer sr-only" data-base-price="320" />
+                <span class="flex min-h-16 items-center gap-3 rounded-lg border-2 border-petal bg-cream px-4 py-3 text-base font-semibold text-cocoa transition peer-checked:border-berry peer-checked:bg-lilac peer-focus:ring-4 peer-focus:ring-lilac">
+
+                  2 kg: R$ 320
+                </span>
+              </label>
+            </div>
+            <p class="mt-2 text-sm leading-6 text-mocha">
+              *o peso em kg indica a quantidade de massa e não o peso do bolo
+            </p>
+            <p class="mt-2 hidden text-sm font-semibold text-red-700" data-error></p>
+          </fieldset>
+
+          <fieldset data-field="cakeTop" class="rounded-lg border-2 border-transparent">
+            <legend class="text-sm font-bold text-cocoa">Topo</legend>
+            <div class="mt-2 grid gap-3 sm:grid-cols-2">
+              <label class="cursor-pointer">
+                <input type="radio" name="cakeTop" value="Sim" class="peer sr-only" data-fixed-price="15" />
+                <span class="flex min-h-16 items-center gap-3 rounded-lg border-2 border-petal bg-cream px-4 py-3 text-base font-semibold text-cocoa transition peer-checked:border-berry peer-checked:bg-lilac peer-focus:ring-4 peer-focus:ring-lilac">
+                  <span aria-hidden="true">✅</span>
+                  Sim (+R$ 15)
+                </span>
+              </label>
+              <label class="cursor-pointer">
+                <input type="radio" name="cakeTop" value="Não" class="peer sr-only" />
+                <span class="flex min-h-16 items-center gap-3 rounded-lg border-2 border-petal bg-cream px-4 py-3 text-base font-semibold text-cocoa transition peer-checked:border-berry peer-checked:bg-lilac peer-focus:ring-4 peer-focus:ring-lilac">
+                  <span aria-hidden="true">❌</span>
+                  Não
+                </span>
+              </label>
+            </div>
+            <p class="mt-2 hidden text-sm font-semibold text-red-700" data-error></p>
+            <div id="cakeTopDescriptionWrapper" data-field="cakeTopDescription" class="mt-4 hidden">
+              <label for="cakeTopDescription" class="block text-sm font-bold text-cocoa">
+                Descreva o topo
+              </label>
+              <input
+                id="cakeTopDescription"
+                name="cakeTopDescription"
+                type="text"
+                class="mt-2 min-h-12 w-full rounded-lg border-2 border-petal bg-cream px-4 py-3 text-base text-cocoa outline-none transition focus:border-berry focus:ring-4 focus:ring-lilac"
+                placeholder="Ex: nome, idade, tema ou frase"
+              />
+              <p class="mt-2 hidden text-sm font-semibold text-red-700" data-error></p>
+            </div>
+          </fieldset>
+
+          <section
+            id="pricePreview"
+            aria-live="polite"
+            class="rounded-lg border-4 border-berry bg-lavender p-4 text-cocoa shadow-soft"
+          >
+            <p class="text-sm font-semibold uppercase tracking-[0.14em] text-berry">
+              Preço estimado
+            </p>
+            <p id="priceTotal" class="mt-2 text-2xl font-bold text-cocoa">
+              Escolha o tamanho
+            </p>
+            <p id="priceBreakdown" class="mt-1 text-sm leading-6 text-mocha">
+              O valor será atualizado quando você selecionar tamanho, massa, recheio e topo.
+            </p>
+          </section>
+
+          <div class="grid gap-5 sm:grid-cols-2">
+            <div data-field="pickupDate">
+              <label for="pickupDate" class="block text-sm font-bold text-cocoa">
+                Data para retirada
+              </label>
+              <input
+                id="pickupDate"
+                name="pickupDate"
+                type="date"
+                required
+                class="mt-2 min-h-12 w-full rounded-lg border-2 border-petal bg-cream px-4 py-3 text-base text-cocoa outline-none transition focus:border-berry focus:ring-4 focus:ring-lilac"
+              />
+              <p class="mt-2 hidden text-sm font-semibold text-red-700" data-error></p>
+            </div>
+
+            <div data-field="pickupTime">
+              <label for="pickupTime" class="block text-sm font-bold text-cocoa">
+                Hora para retirada
+              </label>
+              <input
+                id="pickupTime"
+                name="pickupTime"
+                type="time"
+                required
+                class="mt-2 min-h-12 w-full rounded-lg border-2 border-petal bg-cream px-4 py-3 text-base text-cocoa outline-none transition focus:border-berry focus:ring-4 focus:ring-lilac"
+              />
+              <p class="mt-2 hidden text-sm font-semibold text-red-700" data-error></p>
+            </div>
+          </div>
+
+          <div>
+            <label for="notes" class="block text-sm font-bold text-cocoa">
+              Observações adicionais
+            </label>
+            <textarea
+              id="notes"
+              name="notes"
+              rows="5"
+              class="mt-2 w-full resize-y rounded-lg border-2 border-petal bg-cream px-4 py-3 text-base text-cocoa outline-none transition focus:border-berry focus:ring-4 focus:ring-lilac"
+              placeholder="Tema, cores, decoração, mensagem no topo ou outros detalhes"
+            ></textarea>
+          </div>
+
+          <button
+            id="submitOrderButton"
+            type="submit"
+            class="min-h-14 w-full rounded-lg bg-cocoa px-5 py-4 text-base font-bold text-cream shadow-soft transition hover:bg-mocha focus:outline-none focus:ring-4 focus:ring-lilac"
+          >
+            Enviar pedido pelo WhatsApp
+          </button>
+        </form>
+      </section>
+    </main>
+
+    <footer class="bg-lavender px-5 py-8 text-center">
+      <div class="mx-auto max-w-3xl">
+        <p class="text-lg font-bold text-cocoa">
+          Bolos por encomenda - Maria Júla Machado
+        </p>
+        <p class="mt-2 text-sm leading-6 text-mocha">
+          Em Caldeirão de Uibaí - Rua Aquiles Martins
+        </p>
+        <a
+          id="footerWhatsappButton"
+          href="#"
+          class="mt-5 inline-flex min-h-12 items-center justify-center rounded-lg bg-green-600 px-5 py-3 text-sm font-bold text-white shadow-soft transition hover:bg-green-700 focus:outline-none focus:ring-4 focus:ring-green-200"
+        >
+          Entrar em contato
+        </a>
+      </div>
+    </footer>
+  </div>
+
+  <a
+    id="stickyOrderButton"
+    href="#pedido"
+    class="fixed bottom-4 left-1/2 z-20 flex min-h-14 w-[calc(100%-2rem)] max-w-md -translate-x-1/2 translate-y-0 items-center justify-center rounded-lg bg-cocoa px-5 py-4 text-center text-base font-bold text-cream opacity-100 shadow-soft transition-all duration-500 ease-out hover:bg-mocha focus:outline-none focus:ring-4 focus:ring-lilac"
+  >
+    Fazer Pedido
+  </a>
+
+  <div
+    id="sizeGuideModal"
+    class="fixed inset-0 z-50 hidden items-center justify-center bg-cocoa/70 px-5 py-8"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="sizeGuideTitle"
+  >
+    <div class="mx-auto flex max-h-[88vh] w-full max-w-2xl flex-col overflow-hidden rounded-lg bg-cream shadow-soft">
+      <div class="flex items-center justify-between gap-3 border-b-2 border-petal bg-blush px-4 py-3">
+        <h2 id="sizeGuideTitle" class="text-xl font-bold text-cocoa">
+          Guia Visual de Tamanhos
+        </h2>
+        <button
+          id="closeSizeGuideButton"
+          type="button"
+          class="rounded-lg bg-cocoa px-4 py-3 text-sm font-bold text-cream transition hover:bg-mocha focus:outline-none focus:ring-4 focus:ring-lilac"
+        >
+          Fechar
+        </button>
+      </div>
+
+      <div class="overflow-y-scroll px-4 py-5">
+        <div class="grid rounded-lg border-2 border-berry bg-blush p-1" role="group" aria-label="Formato do bolo">
+          <div class="grid grid-cols-3 gap-1">
+            <button
+              type="button"
+              class="size-format-button rounded-md bg-cocoa px-4 py-3 text-center text-base font-bold text-cream shadow-soft transition"
+              data-size-format="round"
+              aria-pressed="true"
+            >
+              Redondo
+            </button>
+            <button
+              type="button"
+              class="size-format-button rounded-md bg-cream px-4 py-3 text-center text-base font-bold text-cocoa transition hover:bg-lavender"
+              data-size-format="square"
+              aria-pressed="false"
+            >
+              Quadrado
+            </button>
+            <button
+              type="button"
+              class="size-format-button rounded-md bg-cream px-4 py-3 text-center text-base font-bold text-cocoa transition hover:bg-lavender"
+              data-size-format="custom"
+              aria-pressed="false"
+            >
+              Personalizado
+            </button>
+          </div>
+        </div>
+
+        <!-- Atualize dimensões e rendimento aqui caso os valores reais mudem. -->
+        <div id="roundSizeList" class="mt-5 space-y-4">
+          <article class="rounded-lg border-2 border-petal bg-lavender p-4">
+            <img src="Imagens/90%20reais%20redondo.webp" alt="Bolo redondo tamanho menor" class="h-56 w-full rounded-lg object-cover" />
+            <h3 class="mt-4 text-xl font-bold text-cocoa">Menor</h3>
+            <p class="mt-2 text-2xl font-bold text-berry">12cm de diâmetro</p>
+            <p class="mt-2 text-base leading-7 text-mocha">Serve aproximadamente 8 fatias.</p>
+          </article>
+
+          <article class="rounded-lg border-2 border-petal bg-blush p-4">
+            <img src="Imagens/120%20reais%20redondo.webp" alt="Bolo redondo tamanho pequeno" class="h-56 w-full rounded-lg object-cover" />
+            <h3 class="mt-4 text-xl font-bold text-cocoa">Pequeno</h3>
+            <p class="mt-2 text-2xl font-bold text-berry">15cm de diâmetro</p>
+            <p class="mt-2 text-base leading-7 text-mocha">Serve aproximadamente 12 fatias.</p>
+          </article>
+
+          <article class="rounded-lg border-2 border-petal bg-lavender p-4">
+            <img src="Imagens/130%20reais%20redondo.webp" alt="Bolo redondo tamanho médio" class="h-56 w-full rounded-lg object-cover" />
+            <h3 class="mt-4 text-xl font-bold text-cocoa">Médio</h3>
+            <p class="mt-2 text-2xl font-bold text-berry">18cm de diâmetro</p>
+            <p class="mt-2 text-base leading-7 text-mocha">Serve aproximadamente 16 fatias.</p>
+          </article>
+
+          <article class="rounded-lg border-2 border-petal bg-blush p-4">
+            <img src="Imagens/160%20reais%20redondo.webp" alt="Bolo redondo tamanho grande" class="h-56 w-full rounded-lg object-cover" />
+            <h3 class="mt-4 text-xl font-bold text-cocoa">Grande (1 kg)</h3>
+            <p class="mt-2 text-2xl font-bold text-berry">22cm de diâmetro</p>
+            <p class="mt-2 text-base leading-7 text-mocha">Serve aproximadamente 22 fatias.</p>
+          </article>
+        </div>
+
+        <!-- O formato quadrado não possui tamanho menor. Atualize dimensões e rendimento aqui caso os valores reais mudem. -->
+        <div id="squareSizeList" class="mt-5 hidden space-y-4">
+          <article class="rounded-lg border-2 border-petal bg-blush p-4">
+            <img src="Imagens/120%20reais%20quadrado.webp" alt="Bolo quadrado tamanho pequeno" class="h-56 w-full rounded-lg object-cover" />
+            <h3 class="mt-4 text-xl font-bold text-cocoa">Pequeno</h3>
+            <p class="mt-2 text-2xl font-bold text-berry">15cm x 15cm</p>
+            <p class="mt-2 text-base leading-7 text-mocha">Serve aproximadamente 12 fatias.</p>
+          </article>
+
+          <article class="rounded-lg border-2 border-petal bg-lavender p-4">
+            <img src="Imagens/130%20reais%20quadrado.webp" alt="Bolo quadrado tamanho médio" class="h-56 w-full rounded-lg object-cover" />
+            <h3 class="mt-4 text-xl font-bold text-cocoa">Médio</h3>
+            <p class="mt-2 text-2xl font-bold text-berry">18cm x 18cm</p>
+            <p class="mt-2 text-base leading-7 text-mocha">Serve aproximadamente 16 fatias.</p>
+          </article>
+
+          <article class="rounded-lg border-2 border-petal bg-blush p-4">
+            <img src="Imagens/160%20reais%20quadrado.webp" alt="Bolo quadrado tamanho grande" class="h-56 w-full rounded-lg object-cover" />
+            <h3 class="mt-4 text-xl font-bold text-cocoa">Grande (1 kg)</h3>
+            <p class="mt-2 text-2xl font-bold text-berry">22cm x 22cm</p>
+            <p class="mt-2 text-base leading-7 text-mocha">Serve aproximadamente 22 fatias.</p>
+          </article>
+        </div>
+
+        <!-- Opções personalizadas com fotos reais da pasta Imagens. -->
+        <div id="customSizeList" class="mt-5 hidden space-y-4">
+          <article class="rounded-lg border-2 border-petal bg-lavender p-4">
+            <img src="Imagens/280%20reais%20personalizado.webp" alt="Bolo personalizado de 280 reais" class="h-56 w-full rounded-lg object-cover" />
+            <h3 class="mt-4 text-xl font-bold text-cocoa">Personalizado</h3>
+            <p class="mt-2 text-2xl font-bold text-berry">R$ 280</p>
+            <p class="mt-2 text-base leading-7 text-mocha">Modelo especial para encomendas com decoração personalizada.</p>
+          </article>
+
+          <article class="rounded-lg border-2 border-petal bg-blush p-4">
+            <img src="Imagens/2kg%20320%20reais%20quadrado.webp" alt="Bolo quadrado personalizado de 2 kg" class="h-56 w-full rounded-lg object-cover" />
+            <h3 class="mt-4 text-xl font-bold text-cocoa">Quadrado 2 kg</h3>
+            <p class="mt-2 text-2xl font-bold text-berry">R$ 320</p>
+            <p class="mt-2 text-base leading-7 text-mocha">Opção maior em formato quadrado para festas com mais convidados.</p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    const CONFIG = {
+      whatsappNumber: "5511999999999"
+    };
+    
+    const carouselViewport = document.querySelector("#cakeCarouselViewport");
+    const carouselTrack = document.querySelector("#cakeCarouselTrack");
+    const carouselDots = document.querySelector("#cakeCarouselDots");
+    const orderForm = document.querySelector("#orderForm");
+    const orderSection = document.querySelector("#pedido");
+    const stickyOrderButton = document.querySelector("#stickyOrderButton");
+    const footerWhatsappButton = document.querySelector("#footerWhatsappButton");
+    const submitOrderButton = document.querySelector("#submitOrderButton");
+    const cakeTopOptions = document.querySelectorAll('input[name="cakeTop"]');
+    const cakeTopDescriptionWrapper = document.querySelector("#cakeTopDescriptionWrapper");
+    const cakeTopDescription = document.querySelector("#cakeTopDescription");
+    const priceTotal = document.querySelector("#priceTotal");
+    const priceBreakdown = document.querySelector("#priceBreakdown");
+    const openSizeGuideButton = document.querySelector("#btn-guia-tamanhos");
+    const closeSizeGuideButton = document.querySelector("#closeSizeGuideButton");
+    const sizeGuideModal = document.querySelector("#sizeGuideModal");
+    const sizeFormatButtons = document.querySelectorAll(".size-format-button");
+    const squareSizeList = document.querySelector("#squareSizeList");
+    const roundSizeList = document.querySelector("#roundSizeList");
+    const customSizeList = document.querySelector("#customSizeList");
+    const inputErrorClasses = ["border-red-500", "focus:border-red-500", "focus:ring-red-100"];
+    const groupErrorClasses = ["border-red-500", "bg-red-50"];
+    const activeFormatClasses = ["bg-cocoa", "text-cream", "shadow-soft"];
+    const inactiveFormatClasses = ["bg-cream", "text-cocoa", "hover:bg-lavender"];
+    
+    let carouselSlides = Array.from(carouselTrack.children);
+    const originalSlideCount = carouselSlides.length;
+    let carouselIndex = 0;
+    let carouselAutoplayId;
+    let carouselResumeId;
+    let carouselRestartId;
+    let carouselStartX = 0;
+    let carouselIsPointerDown = false;
+    
+    function getRealCarouselIndex() {
+      return carouselIndex;
+    }
+    
+    function setCarouselTransition(enabled) {
+      carouselTrack.classList.toggle("transition-transform", enabled);
+      carouselTrack.classList.toggle("duration-500", enabled);
+      carouselTrack.classList.toggle("ease-in-out", enabled);
+    }
+    
+    function updateCarouselDots() {
+      const activeDotIndex = getRealCarouselIndex();
+    
+      carouselDots.querySelectorAll("button").forEach(function (dot, index) {
+        const isActive = index === activeDotIndex;
+    
+        dot.classList.toggle("bg-cocoa", isActive);
+        dot.classList.toggle("bg-petal", !isActive);
+        dot.classList.toggle("w-6", isActive);
+        dot.classList.toggle("w-2.5", !isActive);
+        dot.setAttribute("aria-current", isActive ? "true" : "false");
+      });
+    }
+    
+    function updateCarouselSlideStyles() {
+      carouselSlides.forEach(function (slide, index) {
+        const isActive = index === carouselIndex;
+    
+        slide.classList.toggle("scale-100", isActive);
+        slide.classList.toggle("opacity-100", isActive);
+        slide.classList.toggle("scale-95", !isActive);
+        slide.classList.toggle("opacity-70", !isActive);
+      });
+    }
+    
+    function moveCarouselTo(index, animated) {
+      const limitedIndex = Math.max(0, Math.min(index, originalSlideCount - 1));
+      const slide = carouselSlides[limitedIndex];
+    
+      if (!slide) {
+        return;
+      }
+    
+      carouselIndex = limitedIndex;
+      setCarouselTransition(animated);
+    
+      const centeredOffset = slide.offsetLeft - ((carouselViewport.clientWidth - slide.offsetWidth) / 2);
+      carouselTrack.style.transform = `translateX(${-centeredOffset}px)`;
+    
+      updateCarouselSlideStyles();
+      updateCarouselDots();
+    }
+    
+    function goToNextSlide() {
+      if (carouselIndex >= originalSlideCount - 1) {
+        scheduleCarouselRestart();
+        return;
+      }
+    
+      moveCarouselTo(carouselIndex + 1, true);
+    
+      if (carouselIndex >= originalSlideCount - 1) {
+        scheduleCarouselRestart();
+      }
+    }
+    
+    function goToPreviousSlide() {
+      moveCarouselTo(carouselIndex - 1, true);
+    }
+    
+    function startCarouselAutoplay() {
+      clearInterval(carouselAutoplayId);
+      clearTimeout(carouselRestartId);
+    
+      if (carouselIndex >= originalSlideCount - 1) {
+        scheduleCarouselRestart();
+        return;
+      }
+    
+      carouselAutoplayId = setInterval(goToNextSlide, 4000);
+    }
+    
+    function pauseCarouselAutoplay() {
+      clearInterval(carouselAutoplayId);
+      clearTimeout(carouselResumeId);
+      clearTimeout(carouselRestartId);
+      carouselResumeId = setTimeout(startCarouselAutoplay, 5000);
+    }
+    
+    function scheduleCarouselRestart() {
+      clearInterval(carouselAutoplayId);
+      clearTimeout(carouselRestartId);
+    
+      carouselRestartId = setTimeout(function () {
+        moveCarouselTo(0, true);
+        startCarouselAutoplay();
+      }, 4000);
+    }
+    
+    function setupCarousel() {
+      for (let index = 0; index < originalSlideCount; index += 1) {
+        const dot = document.createElement("button");
+        dot.type = "button";
+        dot.className = "h-2.5 rounded-full bg-petal transition-all duration-300";
+        dot.setAttribute("aria-label", `Ver bolo ${index + 1}`);
+        dot.addEventListener("click", function () {
+          pauseCarouselAutoplay();
+          moveCarouselTo(index, true);
+        });
+        carouselDots.appendChild(dot);
+      }
+    
+      moveCarouselTo(carouselIndex, false);
+      requestAnimationFrame(function () {
+        setCarouselTransition(true);
+      });
+      startCarouselAutoplay();
+    }
+    
+    carouselViewport.addEventListener("pointerdown", function (event) {
+      carouselIsPointerDown = true;
+      carouselStartX = event.clientX;
+      pauseCarouselAutoplay();
+    });
+    
+    carouselViewport.addEventListener("pointerup", function (event) {
+      if (!carouselIsPointerDown) {
+        return;
+      }
+    
+      const distance = event.clientX - carouselStartX;
+      carouselIsPointerDown = false;
+    
+      if (Math.abs(distance) < 40) {
+        return;
+      }
+    
+      if (distance < 0) {
+        goToNextSlide();
+      } else {
+        goToPreviousSlide();
+      }
+    });
+    
+    carouselViewport.addEventListener("pointercancel", function () {
+      carouselIsPointerDown = false;
+    });
+    
+    carouselViewport.addEventListener("mouseenter", pauseCarouselAutoplay);
+    carouselViewport.addEventListener("touchstart", pauseCarouselAutoplay, { passive: true });
+    
+    window.addEventListener("resize", function () {
+      moveCarouselTo(carouselIndex, false);
+      requestAnimationFrame(function () {
+        setCarouselTransition(true);
+      });
+    });
+    
+    setupCarousel();
+    
+    function formatCurrency(value) {
+      return value.toLocaleString("pt-BR", {
+        style: "currency",
+        currency: "BRL"
+      });
+    }
+    
+    function getWhatsappUrl(message) {
+      return `https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent(message)}`;
+    }
+    
+    footerWhatsappButton.href = getWhatsappUrl("Olá! Gostaria de entrar em contato sobre bolos por encomenda.");
+    
+    function setSizeFormat(format) {
+      const isRound = format === "round";
+      const isSquare = format === "square";
+      const isCustom = format === "custom";
+    
+      squareSizeList.classList.toggle("hidden", !isSquare);
+      roundSizeList.classList.toggle("hidden", !isRound);
+      customSizeList.classList.toggle("hidden", !isCustom);
+    
+      sizeFormatButtons.forEach(function (button) {
+        const isActive = button.dataset.sizeFormat === format;
+    
+        button.setAttribute("aria-pressed", String(isActive));
+        button.classList.toggle(activeFormatClasses[0], isActive);
+        button.classList.toggle(activeFormatClasses[1], isActive);
+        button.classList.toggle(activeFormatClasses[2], isActive);
+        button.classList.toggle(inactiveFormatClasses[0], !isActive);
+        button.classList.toggle(inactiveFormatClasses[1], !isActive);
+        button.classList.toggle(inactiveFormatClasses[2], !isActive);
+      });
+    }
+    
+    function openSizeGuide() {
+      sizeGuideModal.classList.remove("hidden");
+      sizeGuideModal.classList.add("flex");
+      document.body.classList.add("overflow-hidden");
+      setSizeFormat("round");
+      closeSizeGuideButton.focus();
+    }
+    
+    function closeSizeGuide() {
+      sizeGuideModal.classList.add("hidden");
+      sizeGuideModal.classList.remove("flex");
+      document.body.classList.remove("overflow-hidden");
+      openSizeGuideButton.focus();
+    }
+    
+    setSizeFormat("round");
+    
+    openSizeGuideButton.addEventListener("click", openSizeGuide);
+    closeSizeGuideButton.addEventListener("click", closeSizeGuide);
+    
+    sizeGuideModal.addEventListener("click", function (event) {
+      if (event.target === sizeGuideModal) {
+        closeSizeGuide();
+      }
+    });
+    
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape" && !sizeGuideModal.classList.contains("hidden")) {
+        closeSizeGuide();
+      }
+    });
+    
+    sizeFormatButtons.forEach(function (button) {
+      button.addEventListener("click", function () {
+        setSizeFormat(button.dataset.sizeFormat);
+      });
+    });
+    
+    function getFieldContainer(fieldName) {
+      return orderForm.querySelector(`[data-field="${fieldName}"]`);
+    }
+    
+    function getFieldError(fieldName) {
+      const container = getFieldContainer(fieldName);
+      return container ? container.querySelector("[data-error]") : null;
+    }
+    
+    function showFieldError(fieldName, message) {
+      const container = getFieldContainer(fieldName);
+      const error = getFieldError(fieldName);
+    
+      if (!container || !error) {
+        return;
+      }
+    
+      const input = container.querySelector("input:not([type='radio']), textarea");
+      const isRadioGroup = Boolean(container.querySelector("input[type='radio']"));
+    
+      if (input) {
+        input.classList.add(...inputErrorClasses);
+      }
+    
+      if (isRadioGroup) {
+        container.classList.add(...groupErrorClasses);
+      }
+    
+      error.textContent = message;
+      error.classList.remove("hidden");
+    }
+    
+    function clearFieldError(fieldName) {
+      const container = getFieldContainer(fieldName);
+      const error = getFieldError(fieldName);
+    
+      if (!container || !error) {
+        return;
+      }
+    
+      const input = container.querySelector("input:not([type='radio']), textarea");
+    
+      if (input) {
+        input.classList.remove(...inputErrorClasses);
+      }
+    
+      container.classList.remove(...groupErrorClasses);
+      error.textContent = "";
+      error.classList.add("hidden");
+    }
+    
+    function getCheckedValue(fieldName) {
+      const checkedOption = orderForm.querySelector(`input[name="${fieldName}"]:checked`);
+      return checkedOption ? checkedOption.value : "";
+    }
+    
+    function getCheckedOption(fieldName) {
+      return orderForm.querySelector(`input[name="${fieldName}"]:checked`);
+    }
+    
+    function calculateCakePrice() {
+      const selectedSize = getCheckedOption("cakeSize");
+    
+      if (!selectedSize) {
+        return null;
+      }
+    
+      const basePrice = Number(selectedSize.dataset.basePrice);
+      const chocolateBaseIncrease = getCheckedValue("cakeBase") === "Chocolate" ? basePrice * 0.05 : 0;
+      const chocolateFillingIncrease = getCheckedValue("filling") === "Chocolate" ? basePrice * 0.05 : 0;
+      const chocolateFrostingIncrease = getCheckedValue("frosting") === "Chocolate" ? basePrice * 0.05 : 0;
+      const selectedCakeTop = getCheckedOption("cakeTop");
+      const cakeTopPrice = selectedCakeTop && selectedCakeTop.value === "Sim"
+        ? Number(selectedCakeTop.dataset.fixedPrice)
+        : 0;
+      const total = basePrice + chocolateBaseIncrease + chocolateFillingIncrease + chocolateFrostingIncrease + cakeTopPrice;
+    
+      return {
+        basePrice,
+        chocolateBaseIncrease,
+        chocolateFillingIncrease,
+        chocolateFrostingIncrease,
+        cakeTopPrice,
+        total
+      };
+    }
+    
+    function updatePricePreview() {
+      const price = calculateCakePrice();
+    
+      if (!price) {
+        priceTotal.textContent = "Escolha o tamanho";
+        priceBreakdown.textContent = "O valor será atualizado quando você selecionar tamanho, massa, recheio e topo.";
+        return;
+      }
+    
+      const additions = [];
+    
+      if (price.chocolateBaseIncrease > 0) {
+        additions.push(`massa de chocolate: +${formatCurrency(price.chocolateBaseIncrease)}`);
+      }
+    
+      if (price.chocolateFillingIncrease > 0) {
+        additions.push(`recheio de chocolate: +${formatCurrency(price.chocolateFillingIncrease)}`);
+      }
+    
+      if (price.chocolateFrostingIncrease > 0) {
+        additions.push(`cobertura de chocolate: +${formatCurrency(price.chocolateFrostingIncrease)}`);
+      }
+    
+      if (price.cakeTopPrice > 0) {
+        additions.push(`topo: +${formatCurrency(price.cakeTopPrice)}`);
+      }
+    
+      priceTotal.textContent = formatCurrency(price.total);
+      priceBreakdown.textContent = additions.length
+        ? `Base: ${formatCurrency(price.basePrice)}. Acréscimos: ${additions.join(" | ")}.`
+        : `Base: ${formatCurrency(price.basePrice)}. Sem acréscimos.`;
+    }
+    
+    function validateOrderForm() {
+      const requiredFields = [
+        {
+          name: "customerName",
+          value: orderForm.elements.customerName.value.trim(),
+          message: "Ops! Faltou informar seu nome."
+        },
+        {
+          name: "cakeBase",
+          value: getCheckedValue("cakeBase"),
+          message: "Ops! Faltou escolher a massa do bolo."
+        },
+        {
+          name: "filling",
+          value: getCheckedValue("filling"),
+          message: "Ops! Faltou escolher o recheio."
+        },
+        {
+          name: "frosting",
+          value: getCheckedValue("frosting"),
+          message: "Ops! Faltou escolher a cobertura."
+        },
+        {
+          name: "cakeSize",
+          value: getCheckedValue("cakeSize"),
+          message: "Ops! Faltou escolher o tamanho do bolo."
+        },
+        {
+          name: "cakeTop",
+          value: getCheckedValue("cakeTop"),
+          message: "Ops! Faltou dizer se o bolo terá topo."
+        },
+        {
+          name: "pickupDate",
+          value: orderForm.elements.pickupDate.value,
+          message: "Ops! Faltou escolher a data de retirada."
+        },
+        {
+          name: "pickupTime",
+          value: orderForm.elements.pickupTime.value,
+          message: "Ops! Faltou escolher o horário de retirada."
+        }
+      ];
+    
+      if (getCheckedValue("cakeTop") === "Sim") {
+        requiredFields.splice(6, 0, {
+          name: "cakeTopDescription",
+          value: cakeTopDescription.value.trim(),
+          message: "Ops! Faltou descrever como será o topo."
+        });
+      }
+    
+      requiredFields.forEach(function (field) {
+        clearFieldError(field.name);
+      });
+    
+      const firstInvalidField = requiredFields.find(function (field) {
+        return !field.value;
+      });
+    
+      if (!firstInvalidField) {
+        return true;
+      }
+    
+      showFieldError(firstInvalidField.name, firstInvalidField.message);
+    
+      const invalidContainer = getFieldContainer(firstInvalidField.name);
+      invalidContainer.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+      });
+    
+      const invalidInput = invalidContainer.querySelector("input:not([type='radio']), textarea, input[type='radio']");
+    
+      if (invalidInput) {
+        setTimeout(function () {
+          invalidInput.focus({ preventScroll: true });
+        }, 450);
+      }
+    
+      return false;
+    }
+    
+    cakeTopOptions.forEach(function (option) {
+      option.addEventListener("change", function () {
+        const shouldDescribeTop = option.value === "Sim" && option.checked;
+    
+        cakeTopDescriptionWrapper.classList.toggle("hidden", !shouldDescribeTop);
+        clearFieldError("cakeTop");
+        clearFieldError("cakeTopDescription");
+        updatePricePreview();
+    
+        if (!shouldDescribeTop) {
+          cakeTopDescription.value = "";
+        }
+      });
+    });
+    
+    const orderSectionObserver = new IntersectionObserver(
+      function (entries) {
+        const isOrderSectionVisible = entries.some(function (entry) {
+          return entry.isIntersecting;
+        });
+    
+        stickyOrderButton.classList.toggle("opacity-0", isOrderSectionVisible);
+        stickyOrderButton.classList.toggle("translate-y-5", isOrderSectionVisible);
+        stickyOrderButton.classList.toggle("pointer-events-none", isOrderSectionVisible);
+      },
+      {
+        threshold: 0.18
+      }
+    );
+    
+    orderSectionObserver.observe(orderSection);
+    
+    ["customerName", "pickupDate", "pickupTime"].forEach(function (fieldName) {
+      orderForm.elements[fieldName].addEventListener("input", function () {
+        clearFieldError(fieldName);
+      });
+    });
+    
+    cakeTopDescription.addEventListener("input", function () {
+      clearFieldError("cakeTopDescription");
+    });
+    
+    ["cakeBase", "filling", "frosting", "cakeSize"].forEach(function (fieldName) {
+      orderForm.querySelectorAll(`input[name="${fieldName}"]`).forEach(function (option) {
+        option.addEventListener("change", function () {
+          clearFieldError(fieldName);
+          updatePricePreview();
+        });
+      });
+    });
+    
+    orderForm.addEventListener("submit", function (event) {
+      event.preventDefault();
+    
+      if (!validateOrderForm()) {
+        return;
+      }
+    
+      const formData = new FormData(orderForm);
+      const customerName = formData.get("customerName");
+      const cakeBase = formData.get("cakeBase");
+      const filling = formData.get("filling");
+      const frosting = formData.get("frosting");
+      const cakeSize = formData.get("cakeSize");
+      const cakeTop = formData.get("cakeTop");
+      const cakeTopDescriptionValue = formData.get("cakeTopDescription");
+      const cakeTopSummary = cakeTop === "Sim"
+        ? `Sim - ${cakeTopDescriptionValue}`
+        : "Não";
+      const pickupDate = formData.get("pickupDate");
+      const pickupTime = formData.get("pickupTime");
+      const notes = formData.get("notes") || "Sem observações";
+      const price = calculateCakePrice();
+    
+      const message = [
+        "Olá! Gostaria de fazer uma encomenda de bolo.",
+        "",
+        `Nome: ${customerName}`,
+        `Massa: ${cakeBase}`,
+        `Recheio: ${filling}`,
+        `Cobertura: ${frosting}`,
+        `Tamanho/Peso: ${cakeSize}`,
+        `Preço estimado: ${formatCurrency(price.total)}`,
+        `Topo: ${cakeTopSummary}`,
+        `Data: ${pickupDate}`,
+        `Hora: ${pickupTime}`,
+        `Observações: ${notes}`
+      ].join("\n");
+    
+      submitOrderButton.disabled = true;
+      submitOrderButton.textContent = "Abrindo o WhatsApp...";
+      submitOrderButton.classList.add("cursor-wait", "opacity-80");
+    
+      setTimeout(function () {
+        window.location.href = getWhatsappUrl(message);
+      }, 1200);
+    });
+  </script>
+</body>
+</html>
+
+
